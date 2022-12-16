@@ -6,7 +6,7 @@ from time import time,sleep
 import textwrap
 import re
 from flask import Flask, redirect, render_template, request, url_for
-################################################################################
+
 
 def save_file(filepath, content):
     with open(filepath, 'w', encoding='utf-8') as outfile:
@@ -16,18 +16,42 @@ def open_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as infile:
         return infile.read()
 
-# GLOBAL VARIABLES #############################################################
-app = Flask(__name__)  # runs the web server
+# GLOBAL VARIABLES 
+app = Flask(__name__)  
 
 persona = ""  # Chatbot personality trait(s)
 key = ""
-model = ""  # Fine-tuned GPT-3 model to query
-temperature = None  # GPT-3 parameter set on chatbot home page
-prev_human = "Hello."  # Previous human message, starting with Hello.
-prev_bot = "Hi."  # Previous AI message, starting with Hi.
-################################################################################
+model = ""  # Fine-tuned GPT-3 model to allow to use to choose model for later version of the program .
+temperature = None  # GPT-3 parameter to allow to use to choose model for later version of the program.
+prev_human = "Hello."  # Previous human message, starting with Hello. Could also be empty. 
+prev_bot = "Hi."  # Previous AI message, starting with Hi. Could also be empty. 
 
-# CHATBOT API ##################################################################
+# Prompt
+
+def generate_prompt(human_input):
+    """Generates the prompt for the GPT-3 generation.
+
+    Args:
+        human_input: the current utterance string from the user.
+
+    Returns:
+        GPT-3 prompt with the AI persona and past three turns.
+    """
+    global persona
+    global prev_human
+    global prev_bot
+
+    prompt = """The following is a research interview between a researcher and a participant. The participant has the following persona: {persona}.
+    
+    Human: {prev_human}
+    {persona}: {prev_bot}
+    Human: {human_input}
+    {persona}:""".format(persona=persona, prev_human=prev_human, prev_bot=prev_bot, human_input=human_input)
+
+    return prompt
+
+
+# CHATBOT API 
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -122,30 +146,5 @@ def get_bot_reply():
     }
 
     return json.dumps(output)
-################################################################################
-
-# HELPER METHODS ###############################################################
 
 
-def generate_prompt(human_input):
-    """Generates the prompt for the GPT-3 generation.
-
-    Args:
-        human_input: the current utterance string from the user.
-
-    Returns:
-        GPT-3 prompt with the AI persona and past three turns.
-    """
-    global persona
-    global prev_human
-    global prev_bot
-
-    prompt = """The following is a research interview between a researcher and a participant. The participant has the following persona: {persona}.
-    
-    Human: {prev_human}
-    {persona}: {prev_bot}
-    Human: {human_input}
-    {persona}:""".format(persona=persona, prev_human=prev_human, prev_bot=prev_bot, human_input=human_input)
-
-    return prompt
-################################################################################
