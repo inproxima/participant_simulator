@@ -1,23 +1,10 @@
-# GPT-3 Chatbot
-Welcome to the GPT-3 Chatbot! This is a small web app that queries the OpenAI
-API to make a chatbot powered by GPT-3. The chatbot also has a persona, which
-can be chosen on the home page.
+# Participant Simulator
+Welcome to the GPT-3 Participant Simulator! This is a small web app that queries the OpenAI
+API to make a chatbot powered by GPT-3. The chatbot also takes a personal, which and you can interview it for research purposes. 
 
 A lot of this code (and basically all of the README!) was adapted from the
 OpenAI [Quickstart Tutorial](https://github.com/openai/openai-quickstart-python)
 for Python.
-
-## Tutorial
-[I](https://alyssahwang.com) worked on this project as part of my PhD candidacy exam
-(WPE-II for fellow Penn CIS people). Check out my report (TBA) "Designing and
-Implementing a Chatbot with GPT-3" for more information on human-centered
-design, GPT-3, and implementation.
-
-## A Slight Bug...
-The chatbot supports querying any fine-tuned model that you have on your
-account, but it supports only `text-davinci-002` out of the regular GPT-3
-models because of the way the API is set up. Adding the rest is a simple fix
-that I haven't gotten around to yet!
 
 ## Setup
 1. If you don’t have Python installed, install it from here
