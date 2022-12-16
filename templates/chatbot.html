@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Space</title>
+    <link href="static/main.css" rel="stylesheet" type="text/css" media="screen">
+<link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
+<link href="../static/main.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body style="background-color:rgba(244, 91, 105, 1)">
+    <div class="center-area">
+<div>
+  <h1 style="color:#ffffff; ">AI Participant Simulator&nbsp;&nbsp;</h1>
+</div>
+<div style="color:#ffffff; font-size:20px;">
+  {% if persona_description %} <div style="color:#ffffff; font-size:20px;">{{ persona_description }} </div> {% endif %}
+</div>
+</div>
+
+	  
+	  <div class="chat-area">
+    
+    <div class="chat-window" id="chatbox">
+            
+        </div>
+
+        <div class="user-entry-area">
+     
+          <form action="/chat" method="POST" id="userInput" class="chat-entry">
+            <label title="Text input for the user's message to the AI persona" id="textLabel">
+                  <input type="text" name="human_input" id="textInput" placeholder="Type interview questions here" required
+                        autocomplete="off" />
+            </label>
+                <label title="Send button">
+                  <input type="submit" value="Send" id="send" />
+                </label>
+          </form>
+
+          <form action="/" method="GET" class="chat-entry">
+                
+                <label title="New chatbot button">
+                  <input type="submit" value="New Chat" id="new-chatbot" />
+                </label>
+          </form>
+                <label title="Download button">
+                  <input type="submit" value="Download Text" onclick="download()"/>
+                </label>
+        </div>
+</div>
+
+    
+    
+<script>
+        /* Since these functions are quite short and interact only with the
+           elements on this particular page, I have decided to put them in a
+           script on this HTML page instead of in a separate JavaScript file. */
+
+        /**
+         * Passes user input to display AI response in new message bubble.
+         * @function getResponse
+        */
+        function getResponse() {
+            // Get and display user input as a new message bubble.
+            let userText = $("#textInput").val();
+            let userHTML = '<div class="human"><p>' + "Researcher: " + userText + '</p></div>';
+
+            // Reset user input element.
+            $("#textInput").val("");
+
+            // Display the new human message in the chatbox.
+            $("#chatbox").append(userHTML);
+
+            // $.get() and done() are JQuery functions.
+            // $.get() sends a GET request to an endpoint (get_bot_response() in
+            // the Python file) with userText passed in as the input for the
+            // human_input parameter. When the function returns successfully,
+            // the done() function takes the botReply (GPT-3 generation), posts
+            // it as the new AI response, and scrolls the chatbox so the new
+            // messages are visible at the bottom.
+            $.get("/gpt3", { human_input: userText }).done(function (botReplyJSON) {
+                var output = JSON.parse(botReplyJSON);
+                var botReply = output.response;
+
+                var botHTML = document.createElement("div")
+                botHTML.className = "bot";
+                var p = document.createElement("p");
+                p.innerHTML = botReply;
+                botHTML.append(p);
+
+                if (!output.success) {
+                    botHTML.style.backgroundColor = "yellow";
+                }
+
+                $("#chatbox").append(botHTML);
+                var chatbox = document.getElementById('chatbox');
+                chatbox.scrollTop = chatbox.scrollHeight;
+            })
+
+        }
+
+        // When the user hits the return key with a non-empty text input,
+        // run the getResponse() function.
+        $("#textInput").keypress(function (e) {
+            if (e.which == 13 && $("#textInput").val().length > 0) {
+                getResponse();
+            }
+        });
+
+        // When the user clicks the Send button with a non-empty text input,
+        // run the getResponse() function.
+        $("#send").click(function () {
+            if ($("#textInput").val().length > 0) {
+                getResponse();
+            }
+        });
+    
+    function download(){
+        var a = document.body.appendChild(
+            document.createElement("a")
+        );
+        a.download = "export.html";
+        a.href = "data:text/html," + document.getElementById("chatbox").innerHTML;
+        a.click();
+    }
+    </script>
+
+</body>
