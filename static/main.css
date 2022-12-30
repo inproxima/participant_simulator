@@ -3,18 +3,6 @@
 .center {
   border: 5px solid;
   text-align: center;
-}.center {
-  border: 5px solid;
-  text-align: center;
-}.center {
-  border: 5px solid;
-  text-align: center;
-}.center {
-  border: 5px solid;
-  text-align: center;
-}.center {
-  border: 5px solid;
-  text-align: center;
 }
 
 
@@ -23,8 +11,9 @@ h1 {
 }
 
 p {
-    font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
+    font-family: 'Segoe', 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
 }
+
 
 .intro {
 	display: flex;
@@ -101,7 +90,7 @@ p {
 	margin-left: 1.5px;
 	margin-right: 1.5px;
     background: #f6f6f6 none repeat scroll 0 0;
-	border: 1px #1369c3 solid;
+	border: 0px #1369c3 solid;
 	background: #1369c3;
 	color: #ffffff;
 		
@@ -178,5 +167,32 @@ input[type="submit"] {
 
 p.big {
   line-height: 2;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 100vw;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    color: #fff;
+}
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
 }
 
