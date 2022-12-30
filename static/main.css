@@ -24,6 +24,8 @@ p {
     top: 40%;
     left: 50%;
     width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
     position: fixed;
     margin: auto;
     vertical-align: bottom;
