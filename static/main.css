@@ -5,6 +5,9 @@
   text-align: center;
 }
 
+body {
+	 background-image: linear-gradient(to right, #f45395, #f6528a, #f8537f, #f85474, #f75769, #f55a60, #f35d57, #f0614e, #ec6644, #e76a3a, #e16f31, #da7427);
+} 
 
 h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, 'sans-serif';
