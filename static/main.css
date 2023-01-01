@@ -6,17 +6,18 @@
 }
 
 body {
-	 background-image: linear-gradient(to right, #f45395, #f6528a, #f8537f, #f85474, #f75769, #f55a60, #f35d57, #f0614e, #ec6644, #e76a3a, #e16f31, #da7427);
+    height: 100vh;
+    background: linear-gradient(135deg, #955F5B 0%, #0A0F1B 100%)
 } 
 
 h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, 'sans-serif';
+    text-align: center;
 }
 
 p {
     font-family: 'Segoe', 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif';
 }
-
 
 .intro {
 	display: flex;
@@ -44,7 +45,7 @@ p {
     padding: 10px;
     position: absolute;
     background: white;
-    top: 23%;
+    top: 18%;
     right: 25%;
     height: 65%;
     width: 50%;
@@ -82,8 +83,8 @@ p {
     margin-bottom: 2.5px;
 	margin-left: 1.5px;
 	margin-right: 1.5px;
-	border: 1px #c052a9 solid;
-	background: #c052a9;
+	border: 0px #FD655C solid;
+	background: #492A37;
 	color: #ffffff;
 }
 
@@ -95,8 +96,8 @@ p {
 	margin-left: 1.5px;
 	margin-right: 1.5px;
     background: #f6f6f6 none repeat scroll 0 0;
-	border: 0px #1369c3 solid;
-	background: #1369c3;
+	border: 0px #492A37 solid;
+	background: #FD655C;
 	color: #ffffff;
 		
 }
@@ -109,7 +110,7 @@ label {
 }
 
 input[type="text"], input[type="password"]{
-    border: 1px solid #FF3366;
+    border: 1px solid #fd675d;
     padding: 10px;
     border-radius: 3px;
     margin: 5px;
@@ -141,7 +142,7 @@ input[type="text"], input[type="password"]{
 
 input[type="submit"] {
     padding: 10px;
-    background-color:rgba(244, 91, 105, 1);
+    background-color:#fd675d;
     border: none;
     border-radius: 3px;
     text-align: center;
@@ -180,7 +181,7 @@ footer{
     bottom: 0;
     left: 0;
     right: 0;
-    background: #111;
+    background: #191924;
     height: auto;
     width: 100vw;
     padding-top: 40px;
@@ -195,12 +196,12 @@ footer{
     text-align: center;
 }
 a:link {
-    color: #FF3366;
+    color: #FD655C;
     text-decoration: none;
 }
 
 a:visited {
-    color: #c052a9;
+    color: #5AB8CD;
     text-decoration: none;
 }
 

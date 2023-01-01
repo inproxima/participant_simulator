@@ -5,54 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interview Space</title>
     <link href="static/main.css" rel="stylesheet" type="text/css" media="screen">
-<link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
-<link href="../static/main.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="center-area">
 <div>
-  <h1 style="color:#ffffff; ">AI Participant Simulator&nbsp;&nbsp;</h1>
+  <h1 style="color:#E4EFF1; ">AI Participant Simulator</h1>
 </div>
-<div style="color:#ffffff; font-size:20px;">
-  {% if persona_description %} <div style="color:#ffffff; font-size:20px;">{{ persona_description }} </div> {% endif %}
+<div style="color:#E4EFF1; font-size:20px;">
+  {% if persona_description %} <div style="color:#E4EFF1; font-size:20px; text-align: center;">{{ persona_description }} </div> {% endif %}
 </div>
-</div>
-
-	  
-	  <div class="chat-area">
+</div>	  
+<div class="chat-area">
+<div class="chat-window" id="chatbox">
     
-    <div class="chat-window" id="chatbox">
-            
-        </div>
-
-        <div class="user-entry-area">
-     
-          <form action="/chat" method="POST" id="userInput" class="chat-entry">
-            <label title="Text input for the user's message to the AI persona" id="textLabel">
-                  <input type="text" name="human_input" id="textInput" placeholder="Type interview questions here" required
-                        autocomplete="off" />
-            </label>
-                <label title="Send button">
-                  <input type="submit" value="Send" id="send" />
-                </label>
-          </form>
-
-          <form action="/" method="GET" class="chat-entry">
-                
-                <label title="New chatbot button">
-                  <input type="submit" value="New Chat" id="new-chatbot" />
-                </label>
-          </form>
-                <label title="Download button">
-                  <input type="submit" value="Download Text" onclick="download()"/>
-                </label>
-        </div>
 </div>
 
-    
-    
+<div class="user-entry-area">
+
+    <form action="/chat" method="POST" id="userInput" class="chat-entry">
+    <label title="Text input for the user's message to the AI persona" id="textLabel">
+            <input type="text" name="human_input" id="textInput" placeholder="Type interview questions here" required
+                autocomplete="off" />
+    </label>
+        <label title="Send button">
+            <input type="submit" value="Send" id="send" />
+        </label>
+    </form>
+
+    <form action="/" method="GET" class="chat-entry">
+        
+        <label title="New chatbot button">
+            <input type="submit" value="New Chat" id="new-chatbot" />
+        </label>
+    </form>
+        <label title="Download button">
+            <input type="submit" value="Download Text" onclick="download()"/>
+        </label>
+</div>
+</div>
 <script>
         /* Since these functions are quite short and interact only with the
            elements on this particular page, I have decided to put them in a
