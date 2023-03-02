@@ -41,14 +41,14 @@ def generate_prompt(human_input):
     global prev_human
     global prev_bot
 
-    prompt = """The following is a research interview between a researcher and a participant. The participant has the following persona: {persona}.
+    message = """The following is a research interview between a researcher and a participant. The participant has the following persona: {persona}.
     
     Human: {prev_human}
     {persona}: {prev_bot}
     Human: {human_input}
-    {persona}:""".format(persona=persona, prev_human=prev_human, prev_bot=prev_bot, human_input=human_input)
+    {persona}:.format(persona=persona, prev_human=prev_human, prev_bot=prev_bot, human_input=human_input)
 
-    return prompt
+    return prompt"""
 
 
 # CHATBOT API 
@@ -70,7 +70,7 @@ def index():
         persona = request.form["persona"]
 
         global model
-        model = "text-davinci-003"
+        model = "gpt-3.5-turbo"
 
         global temperature
         temperature = "0.7"
@@ -112,23 +112,26 @@ def chat():
 
 @app.route("/gpt3", methods=["GET"])
 def get_bot_reply():
-    # Retrieve human_input populated by getResponse script in chatbot.html.
-    human_input = request.args.get("human_input")
-    prompt = generate_prompt(human_input)
-
     # Query OpenAI API for GPT-3 generation.
     global model
     global temperature
     global persona
     
+    # Retrieve human_input populated by getResponse script in chatbot.html.
+    human_input = request.args.get("human_input")
+    message = [
+        {"role": "system", "content": f"You are the following person: {persona}. You are begin interviewed by a researcher."},
+        {"role": "user", "content": f"{human_input}"}
+    ]
+    
     try:
-        response = openai.Completion.create(
-            engine=model,
-            prompt=prompt,
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=message,
             temperature=0.7,
             max_tokens=250,
-            stop=[f"{persona}:", "Human:", "\n"],
-        ).choices[0].text
+            stop=None,
+        ).choices[0].message.content
         is_successful = True
     except Exception as e:
         response = f"ERROR: {e}"
