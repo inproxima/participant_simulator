@@ -1,61 +1,14 @@
 # GPT-3 Chatbot
-Welcome to the GPT-3 Chatbot! This is a small web app that queries the OpenAI
-API to make a chatbot powered by GPT-3. The chatbot also has a persona, which
-can be chosen on the home page.
+Welcome to our chatbot, powered by the state-of-the-art OpenAI GPT-3.5-Turbo model! This chatbot is a unique tool that can become a persona given by you, allowing it to be interviewed by student-researchers for educational purposes.
 
-A lot of this code (and basically all of the README!) was adapted from the
-OpenAI [Quickstart Tutorial](https://github.com/openai/openai-quickstart-python)
-for Python.
+With the power of advanced natural language processing, this chatbot can understand and respond to a wide range of questions and topics, providing informative and engaging answers that can help students learn and explore various subjects
 
-## Tutorial
-[I](https://alyssahwang.com) worked on this project as part of my PhD candidacy exam
-(WPE-II for fellow Penn CIS people). Check out my report (TBA) "Designing and
-Implementing a Chatbot with GPT-3" for more information on human-centered
-design, GPT-3, and implementation.
 
-## A Slight Bug...
-The chatbot supports querying any fine-tuned model that you have on your
-account, but it supports only `text-davinci-002` out of the regular GPT-3
-models because of the way the API is set up. Adding the rest is a simple fix
-that I haven't gotten around to yet!
+Recognition
+This project is funded by the 2023 Werklund School (University of Calgary) Teaching and Learning Support Grant. 
 
-## Setup
-1. If you don’t have Python installed, install it from here
+This bot was build on top of a model developed the [Alyssa Hwang](https://alyssahwang.com) as part of her PhD candidacy exam
+(WPE-II for fellow Penn CIS people).
 
-2. Clone this repository
 
-3. Navigate into the project directory
 
-```
-$ cd gpt3-chatbot
-```
-
-4. Create a new virtual environment
-
-```
-$ python -m venv venv
-$ . venv/bin/activate
-```
-
-5. Install the requirements
-
-```
-$ pip install -r requirements.txt
-```
-
-6. Make a copy of the example environment variables file
-
-```
-$ cp .env.example .env
-```
-
-7. Add your [API key](https://beta.openai.com/account/api-keys) to the newly
-created .env file
-
-8. Run the app
-
-```
-$ flask run
-```
-
-You should now be able to access the app at http://localhost:5000!
